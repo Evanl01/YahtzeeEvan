@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'yahtzeeEvan.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(const MyApp());
+  runApp(Yahtzee());
+
 }
 
 class MyApp extends StatelessWidget {
