@@ -25,82 +25,6 @@ class YahtzeeHome extends StatefulWidget {
 class YahtzeeHomeState extends State<YahtzeeHome> {
   List<Dice> dice = List.generate(5, (_) => Dice());
 
-  void rollDice() {
-    setState(() {
-      for (var die in dice) {
-        die.roll();
-      }
-    });
-  }
-
-  Widget dot() {
-    return Container(
-      height: 10,
-      width: 10,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        shape: BoxShape.circle,
-      ),
-    );
-  }
-
-  Widget buildDie(int value) {
-    List<Widget> dots = [];
-    switch (value) {
-      case 1:
-        dots = [Positioned(left: 45, top: 40, child: dot())];
-        break;
-      case 2:
-        dots = [
-          Positioned(left: 15, top: 10, child: dot()),
-          Positioned(left: 75, top: 70, child: dot())
-        ];
-        break;
-      case 3:
-        dots = [
-          Positioned(left: 15, top: 10, child: dot()),
-          Positioned(left: 45, top: 40, child: dot()),
-          Positioned(left: 75, top: 70, child: dot())
-        ];
-        break;
-      case 4:
-        dots = [
-          Positioned(left: 15, top: 10, child: dot()),
-          Positioned(left: 75, top: 10, child: dot()),
-          Positioned(left: 15, top: 70, child: dot()),
-          Positioned(left: 75, top: 70, child: dot())
-        ];
-        break;
-      case 5:
-        dots = [
-          Positioned(left: 15, top: 10, child: dot()),
-          Positioned(left: 75, top: 10, child: dot()),
-          Positioned(left: 45, top: 40, child: dot()),
-          Positioned(left: 15, top: 70, child: dot()),
-          Positioned(left: 75, top: 70, child: dot())
-        ];
-        break;
-      case 6:
-        dots = [
-          Positioned(left: 15, top: 10, child: dot()),
-          Positioned(left: 75, top: 10, child: dot()),
-          Positioned(left: 15, top: 40, child: dot()),
-          Positioned(left: 75, top: 40, child: dot()),
-          Positioned(left: 15, top: 70, child: dot()),
-          Positioned(left: 75, top: 70, child: dot())
-        ];
-        break;
-    }
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(width: 1),
-      ),
-      height: 100,
-      width: 100,
-      child: Stack(children: dots),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +56,11 @@ class YahtzeeHomeState extends State<YahtzeeHome> {
           ),
           SizedBox(height: 20), // Space between row of dice and roll button
           ElevatedButton(
-            onPressed: rollDice,
+            onPressed: () {
+              setState(() {
+                rollDice(dice);
+              });
+            },
             child: Text("Roll"),
           ),
         ],
